@@ -3,7 +3,7 @@ defmodule ExMon do
   Functions to interact with the game `ExMon`.
   """
 
-  alias ExMon.Player
+  alias ExMon.{Player, Landscape}
 
   @doc """
   Creates a player
@@ -22,5 +22,9 @@ defmodule ExMon do
   """
   def create_player(move_avg, move_heal, move_rnd, name) do
     Player.build(move_avg, move_heal, move_rnd, name)
+  end
+
+  def create_landscape(level, name) do
+    Landscape.build(level, name)
   end
 end
