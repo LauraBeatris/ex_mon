@@ -3,6 +3,10 @@ defmodule ExMon.Landscape do
   Represents a landscape from the game
   """
 
+  @easy_level 1
+  @intermediate_level 2
+  @difficult_level 3
+
   use TypedStruct
 
   @min_level 1
