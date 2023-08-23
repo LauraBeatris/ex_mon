@@ -19,7 +19,8 @@ defmodule ExMon.MixProject do
 
   defp deps do
     [
-      {:typed_struct, "~> 0.3.0"}
+      {:typed_struct, "~> 0.3.0"},
+      {:credo, "~> 1.7", only: [:dev, :test], runtime: false}
     ]
   end
 end

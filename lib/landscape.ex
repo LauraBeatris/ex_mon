@@ -1,4 +1,8 @@
 defmodule ExMon.Landscape do
+  @moduledoc """
+  Represents a landscape from the game
+  """
+
   use TypedStruct
 
   @min_level 1
