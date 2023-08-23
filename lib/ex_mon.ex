@@ -3,15 +3,15 @@ defmodule ExMon do
   Functions to interact with the game `ExMon`.
   """
 
-  alias ExMon.{Landscape, Player, Game}
+  alias ExMon.{Game, Landscape, Player}
 
   @doc """
   Creates a player
 
   ## Examples
 
-      iex> ExMon.Player(:soco, :cura, :chute, "Laura")
-      %ExMon.Player{
+      iex> ExMon.create_player("Laura", :soco, :cura, :chute)
+      %Player{
         :soco,
         :cura,
         :chute,
@@ -20,8 +20,8 @@ defmodule ExMon do
       }
 
   """
-  def create_player(move_avg, move_heal, move_rnd, name) do
-    Player.build(move_avg, move_heal, move_rnd, name)
+  def create_player(name, move_avg, move_heal, move_rnd) do
+    Player.build(name, move_avg, move_heal, move_rnd)
   end
 
   @doc """
@@ -29,15 +29,15 @@ defmodule ExMon do
 
   ## Examples
 
-      iex> ExMon.Landscape(ExMon.Landscape.attribute(:easy_level), :cura, :chute, "Tokyo")
-      %ExMon.Landscape{
+      iex> ExMon.create_landscape("Tokyo", Landscape.easy_level())
+      %Landscape{
         level: 1,
         name: "Tokyo"
       }
 
   """
-  def create_landscape(level, name) do
-    Landscape.build(level, name)
+  def create_landscape(name, level) do
+    Landscape.build(name, level)
   end
 
   @doc """
@@ -52,9 +52,9 @@ defmodule ExMon do
       }
 
   """
-  def start_game(player) do
+  def start_game(player, landscape) do
     "Robot"
     |> create_player(:punch, :kick, :heal)
-    |> Game.start(player)
+    |> Game.start(player, landscape)
   end
 end

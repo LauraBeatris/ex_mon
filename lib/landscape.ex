@@ -3,9 +3,9 @@ defmodule ExMon.Landscape do
   Represents a landscape from the game
   """
 
-  @easy_level 1
-  @intermediate_level 2
-  @difficult_level 3
+  def easy_level, do: 1
+  def intermediate_level, do: 2
+  def difficult_level, do: 3
 
   use TypedStruct
 
@@ -16,10 +16,10 @@ defmodule ExMon.Landscape do
     field(:level, integer(), default: @min_level)
   end
 
-  def build(level, name) do
+  def build(name, level) do
     %ExMon.Landscape{
-      level: level,
-      name: name
+      name: name,
+      level: level
     }
   end
 end

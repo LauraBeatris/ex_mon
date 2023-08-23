@@ -1,12 +1,13 @@
 defmodule ExMon.Game do
   use Agent
 
-  def start(computer, player) do
+  def start(computer, player, landscape) do
     initial_value = %{
-      computer: computer,
-      player: player,
       turn: player,
-      status: :started
+      player: player,
+      status: :started,
+      computer: computer,
+      landscape: landscape
     }
 
     Agent.start_link(fn -> initial_value end, name: __MODULE__)
