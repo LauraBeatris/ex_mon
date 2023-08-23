@@ -3,7 +3,7 @@ defmodule ExMon do
   Functions to interact with the game `ExMon`.
   """
 
-  alias ExMon.{Player, Landscape}
+  alias ExMon.{Landscape, Player}
 
   @doc """
   Creates a player
