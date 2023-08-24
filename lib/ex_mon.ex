@@ -4,6 +4,7 @@ defmodule ExMon do
   """
 
   alias ExMon.{Game, Landscape, Player}
+  alias ExMon.Game.Status
 
   @doc """
   Creates a player
@@ -56,5 +57,7 @@ defmodule ExMon do
     "Robot"
     |> create_player(:punch, :kick, :heal)
     |> Game.start(player, landscape)
+
+    Status.print_round_message()
   end
 end
