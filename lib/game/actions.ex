@@ -4,7 +4,17 @@ defmodule ExMon.Game.Actions do
   """
 
   alias ExMon.Game
-  alias ExMon.Game.Status
+  alias ExMon.Game.Actions.Attack
+
+  @doc """
+  Attacks the opponent from a given movement
+  """
+  def attack(move) do
+    case Game.turn() do
+      :player -> Attack.attack_opponent(:computer, move)
+      :computer -> Attack.attack_opponent(:player, move)
+    end
+  end
 
   @doc """
   Fetches the movement from a player state
@@ -23,16 +33,5 @@ defmodule ExMon.Game.Actions do
     |> Enum.find_value({:error, chosen_move}, fn {key, value} ->
       if value === chosen_move, do: {:ok, key}
     end)
-  end
-
-  def perform_move({:error, move}) do
-    Status.print_invalid_move_message(move)
-  end
-
-  def perform_move({:ok, move}) do
-    case move do
-      :move_heal -> "perform_heal"
-      move -> "attack"
-    end
   end
 end

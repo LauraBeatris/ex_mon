@@ -9,7 +9,8 @@ defmodule ExMon.Game.Status do
   Prints round info from current state
   """
   def print_round_message do
-    IO.puts("\n===== The game has started! =====\n")
+    landscape_name = Game.landscape() |> Map.get(:name)
+    IO.puts("\n===== The game has started in #{landscape_name}! =====\n")
     Game.info() |> IO.inspect()
     IO.puts("-------------------------------------")
   end

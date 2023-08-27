@@ -16,7 +16,7 @@ defmodule ExMon.Game do
   """
   def start(computer, player, landscape) do
     initial_value = %{
-      turn: player,
+      turn: :player,
       player: player,
       status: :started,
       computer: computer,
@@ -38,5 +38,16 @@ defmodule ExMon.Game do
   """
   def player do
     info() |> Map.get(:player)
+  end
+
+  def landscape do
+    info() |> Map.get(:landscape)
+  end
+
+  @doc """
+  Retrieves the turn state
+  """
+  def turn do
+    info() |> Map.get(:turn)
   end
 end
