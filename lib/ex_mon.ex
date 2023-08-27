@@ -64,7 +64,7 @@ defmodule ExMon do
   """
   def make_move(move) do
     move
-    |> Actions.fetch_move()
+    |> Actions.validate_and_find_move()
     |> perform_move()
   end
 

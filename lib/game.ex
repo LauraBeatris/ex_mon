@@ -36,10 +36,12 @@ defmodule ExMon.Game do
   @doc """
   Retrieves the player state
   """
-  def player do
-    info() |> Map.get(:player)
-  end
+  def player(:computer), do: info() |> Map.get(:computer)
+  def player(:player), do: info() |> Map.get(:player)
 
+  @doc """
+  Retrieves the landscape state
+  """
   def landscape do
     info() |> Map.get(:landscape)
   end

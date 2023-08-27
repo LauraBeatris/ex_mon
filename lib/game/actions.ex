@@ -19,8 +19,8 @@ defmodule ExMon.Game.Actions do
   @doc """
   Fetches the movement from a player state
   """
-  def fetch_move(move) do
-    Game.player()
+  def validate_and_find_move(move) do
+    Game.player(:player)
     |> Map.get(:moves)
     |> find_move(move)
   end
