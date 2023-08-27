@@ -4,18 +4,20 @@ defmodule ExMon do
   """
 
   alias ExMon.{Game, Landscape, Player}
-  alias ExMon.Game.Status
+  alias ExMon.Game.{Status, Actions}
 
   @doc """
   Creates a player
 
   ## Examples
 
-      iex> ExMon.create_player("Laura", :soco, :cura, :chute)
+      iex> ExMon.create_player("Laura", :punch, :heal, :kick)
       %Player{
-        :soco,
-        :cura,
-        :chute,
+        moves: %{
+          move_avg: :punch,
+          move_heal: :heal,
+          move_rnd: :kick
+        },
         name: "Laura",
         life: 100
       }
@@ -46,12 +48,8 @@ defmodule ExMon do
 
   ## Examples
 
-      iex> ExMon.Landscape(ExMon.Landscape.attribute(:easy_level), :cura, :chute, "Tokyo")
-      %ExMon.Landscape{
-        level: 1,
-        name: "Tokyo"
-      }
-
+      iex> landscape = ExMon.create_landscape("Tokyo", Landscape.easy_level())
+      iex> ExMon.create_player("Laura", :punch, :heal, :kick) |> ExMon.start_game(landscape)
   """
   def start_game(player, landscape) do
     "Robot"
@@ -59,5 +57,14 @@ defmodule ExMon do
     |> Game.start(player, landscape)
 
     Status.print_round_message()
+  end
+
+  @doc """
+  Makes a heal or attack movement from the current player state
+  """
+  def make_move(move) do
+    move
+    |> Actions.fetch_move()
+    |> Actions.perform_move()
   end
 end

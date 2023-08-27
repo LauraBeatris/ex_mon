@@ -13,4 +13,8 @@ defmodule ExMon.Game.Status do
     Game.info() |> IO.inspect()
     IO.puts("-------------------------------------")
   end
+
+  def print_invalid_move_message(move) do
+    IO.puts("\n===== Invalid move: #{move} =====\n")
+  end
 end
