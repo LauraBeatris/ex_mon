@@ -4,7 +4,7 @@ defmodule ExMon do
   """
 
   alias ExMon.{Game, Landscape, Player}
-  alias ExMon.Game.{Status, Actions}
+  alias ExMon.Game.{Actions, Status}
 
   @doc """
   Creates a player

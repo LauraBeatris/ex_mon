@@ -52,4 +52,11 @@ defmodule ExMon.Game do
   def turn do
     info() |> Map.get(:turn)
   end
+
+  @doc """
+  Updates the entire game state
+  """
+  def update(state) do
+    Agent.update(__MODULE__, fn _ -> state end)
+  end
 end
