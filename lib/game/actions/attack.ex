@@ -1,5 +1,6 @@
 defmodule ExMon.Game.Actions.Attack do
   alias ExMon.Game
+  alias ExMon.Game.Status
 
   @move_avg_damage 18..25
   @move_rnd_damage 10..35
@@ -12,6 +13,8 @@ defmodule ExMon.Game.Actions.Attack do
     |> Map.get(:life)
     |> calculate_total_life(damage)
     |> update_opponent_life(opponent)
+
+    Status.print_move_message(opponent, :attack, damage)
   end
 
   defp calculate_damage(:move_avg), do: Enum.random(@move_avg_damage)

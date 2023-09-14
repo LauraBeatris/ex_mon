@@ -32,7 +32,7 @@ defmodule ExMon do
 
   ## Examples
 
-      iex> ExMon.create_landscape("Tokyo", Landscape.easy_level())
+      iex> ExMon.create_landscape("Tokyo", ExMon.Landscape.easy_level())
       %Landscape{
         level: 1,
         name: "Tokyo"
@@ -48,7 +48,7 @@ defmodule ExMon do
 
   ## Examples
 
-      iex> landscape = ExMon.create_landscape("Tokyo", Landscape.easy_level())
+      iex> landscape = ExMon.create_landscape("Tokyo", ExMon.Landscape.easy_level())
       iex> ExMon.create_player("Laura", :punch, :heal, :kick) |> ExMon.start_game(landscape)
   """
   def start_game(player, landscape) do
