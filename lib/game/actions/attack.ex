@@ -1,4 +1,8 @@
 defmodule ExMon.Game.Actions.Attack do
+  @moduledoc """
+  Performs attack actions
+  """
+
   alias ExMon.Game
   alias ExMon.Game.Status
 

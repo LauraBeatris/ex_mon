@@ -4,10 +4,20 @@ defmodule ExMon.Game.Actions do
   """
 
   alias ExMon.Game
-  alias ExMon.Game.Actions.Attack
+  alias ExMon.Game.Actions.{Attack, Heal}
 
   @doc """
-  Attacks the opponent from a given movement
+  Heals the current turn player
+  """
+  def heal() do
+    case Game.turn() do
+      :player -> Heal.heal_life(:player)
+      :computer -> Heal.heal_life(:computer)
+    end
+  end
+
+  @doc """
+  Attacks the opponent with a given movement
   """
   def attack(move) do
     case Game.turn() do
