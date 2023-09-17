@@ -66,6 +66,8 @@ defmodule ExMon do
     move
     |> Actions.validate_and_find_move()
     |> perform_move()
+
+    Game.info() |> computer_move
   end
 
   defp perform_move({:error, move}) do
@@ -80,4 +82,10 @@ defmodule ExMon do
 
     Game.info() |> Status.print_round_message()
   end
+
+  defp computer_move(%{turn: :computer, status: :continue}) do
+    {:ok, Enum.random(Player.moves())} |> perform_move
+  end
+
+  defp computer_move(_), do: :ok
 end

@@ -9,6 +9,8 @@ defmodule ExMon.Player do
   @enforce_keys @player_keys
   defstruct @player_keys
 
+  def moves, do: [:move_avg, :move_rnd, :move_heal]
+
   def build(name, move_avg, move_heal, move_rnd) do
     %ExMon.Player{
       moves: %{
