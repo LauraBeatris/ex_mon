@@ -1,6 +1,6 @@
 # ExMon
 
-Simple game developed to learn Elixir
+A fight game via CLI, for learning purposes
 
 ## Installation
 
