@@ -53,10 +53,10 @@ defmodule ExMon do
   """
   def start_game(player, landscape) do
     "Robot"
-    |> create_player(:punch, :kick, :heal)
+    |> create_player(:punch, :heal, :kick)
     |> Game.start(player, landscape)
 
-    Status.print_round_message()
+    Game.info() |> Status.print_round_message()
   end
 
   @doc """
@@ -77,5 +77,7 @@ defmodule ExMon do
       :move_heal -> "perform_heal"
       move -> Actions.attack(move)
     end
+
+    Game.info() |> Status.print_round_message()
   end
 end

@@ -3,6 +3,7 @@ defmodule ExMon.Game do
   Manages the game state
   """
 
+  alias ExMon.Player
   use Agent
 
   @doc """
@@ -11,7 +12,7 @@ defmodule ExMon.Game do
   ## Examples
 
     iex> player = ExMon.create_player("Laura", :punch, :heal, :kick)
-    iex> landscape = ExMon.create_landscape("Tokyo", Landscape.easy_level())
+    iex> landscape = ExMon.create_landscape("Tokyo", ExMon.Landscape.easy_level())
     iex> ExMon.create_player("Robot", :punch, :heal, :kick) |> Game.start(player, landscape)
   """
   def start(computer, player, landscape) do
@@ -57,6 +58,21 @@ defmodule ExMon.Game do
   Updates the entire game state
   """
   def update(state) do
-    Agent.update(__MODULE__, fn _ -> state end)
+    Agent.update(__MODULE__, fn _ -> update_game_state(state) end)
   end
+
+  defp update_game_state(
+         %{player: %Player{life: player_life}, computer: %{life: computer_life}} = state
+       )
+       when player_life == 0 or computer_life == 0,
+       do: Map.put(state, :status, :game_over)
+
+  defp update_game_state(state) do
+    state
+    |> Map.put(:status, :continue)
+    |> update_turn
+  end
+
+  defp update_turn(%{turn: :player} = state), do: Map.put(state, :turn, :computer)
+  defp update_turn(%{turn: :computer} = state), do: Map.put(state, :turn, :player)
 end

@@ -4,13 +4,36 @@ defmodule ExMon.Game.Status do
   """
 
   alias ExMon.Game
+  alias ExMon.Player
 
   @doc """
   Prints round info from current state
   """
-  def print_round_message do
+  def print_round_message(%{status: :started}) do
     landscape_name = Game.landscape() |> Map.get(:name)
     IO.puts("\n===== The game has started in #{landscape_name}! =====\n")
+    Game.info() |> IO.inspect()
+    IO.puts("-------------------------------------")
+  end
+
+  def print_round_message(%{status: :continue, turn: :player, player: %Player{name: player_name}}) do
+    IO.puts("\n===== It's player (#{player_name}) turn! =====\n")
+    Game.info() |> IO.inspect()
+    IO.puts("-------------------------------------")
+  end
+
+  def print_round_message(%{
+        status: :continue,
+        turn: :computer,
+        computer: %Player{name: computer_name}
+      }) do
+    IO.puts("\n===== It's computer (#{computer_name}) turn! =====\n")
+    Game.info() |> IO.inspect()
+    IO.puts("-------------------------------------")
+  end
+
+  def print_round_message(%{status: :game_over}) do
+    IO.puts("\n===== The game is over! =====\n")
     Game.info() |> IO.inspect()
     IO.puts("-------------------------------------")
   end
@@ -24,6 +47,6 @@ defmodule ExMon.Game.Status do
   end
 
   def print_move_message(:computer, :attack, damage) do
-    IO.puts("\n===== The Computer attacked the computer dealing #{damage} damage. =====\n")
+    IO.puts("\n===== The Computer attacked the player dealing #{damage} damage. =====\n")
   end
 end
