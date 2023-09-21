@@ -9,7 +9,7 @@ defmodule ExMon.Game.Actions do
   @doc """
   Heals the current turn player
   """
-  def heal() do
+  def heal do
     case Game.turn() do
       :player -> Heal.heal_life(:player)
       :computer -> Heal.heal_life(:computer)
