@@ -63,11 +63,19 @@ defmodule ExMon do
   Makes a heal or attack movement from the current player state
   """
   def make_move(move) do
+    Game.info()
+    |> Map.get(:status)
+    |> handle_status(move)
+  end
+
+  defp handle_status(:game_over, _move), do: Game.info() |> Status.print_round_message()
+
+  defp handle_status(_other, move) do
     move
     |> Actions.validate_and_find_move()
     |> perform_move()
 
-    Game.info() |> computer_move
+    Game.info() |> computer_move()
   end
 
   defp perform_move({:error, move}) do
