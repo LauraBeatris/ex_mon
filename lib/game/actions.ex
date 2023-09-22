@@ -35,10 +35,7 @@ defmodule ExMon.Game.Actions do
     |> find_move(move)
   end
 
-  @doc """
-  Finds a movement from a given movements enum
-  """
-  def find_move(player_moves, chosen_move) do
+  defp find_move(player_moves, chosen_move) do
     player_moves
     |> Enum.find_value({:error, chosen_move}, fn {key, value} ->
       if value === chosen_move, do: {:ok, key}

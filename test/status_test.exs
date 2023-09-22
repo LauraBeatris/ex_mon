@@ -3,8 +3,8 @@ defmodule ExMon.Game.StatusTest do
 
   import ExUnit.CaptureIO
 
-  alias ExMon.{Game, Player, Landscape}
-  alias ExMon.Game.{Status}
+  alias ExMon.{Game, Landscape, Player}
+  alias ExMon.Game.Status
 
   describe "print_round_message/1" do
     setup do
