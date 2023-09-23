@@ -28,7 +28,7 @@ defmodule ExMon.Game.Actions.Heal do
     |> update_game(turn, life)
   end
 
-  def update_game(player_state, turn, life) do
+  defp update_game(player_state, turn, life) do
     Game.info()
     |> Map.put(turn, player_state)
     |> Game.update()
